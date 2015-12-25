@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
+    
 	github: {
 		id: String,
 		displayName: String,
@@ -12,7 +13,9 @@ var User = new Schema({
 	},
    nbrClicks: {
       clicks: Number
-   }
+   },
+   polls: Array
 });
+
 
 module.exports = mongoose.model('User', User);
