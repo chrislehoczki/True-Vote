@@ -13,7 +13,10 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var clickHandler = new ClickHandler(); //new clickhandler object from the function in other file
+
+
+	
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -36,22 +39,52 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/profile.html');
 		});
 
+	//USER API - to get data on a user
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user.github);
 		});
-
+	
+	//AUTH WITH GITHUB - initiates authentication
 	app.route('/auth/github')
 		.get(passport.authenticate('github'));
 
+	//CALLBACK FROM GITHUB
 	app.route('/auth/github/callback')
 		.get(passport.authenticate('github', {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}));
 
+
+
+	//CLICK INFO
+	/*
 	app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
+		.post(isLoggedIn, clickHandler.addClick) 
 		.delete(isLoggedIn, clickHandler.resetClicks);
+		*/
+		
+		
+		
+		
+		//PUBLIC VIEW AND VOTE API
+	app.route('/vote')
+		.get(function (req, res) {
+			res.write("blah")
+			res.sendFile(path + '/public/poll.html');
+		});
+		
+	//PUBLIC API TO GET POLL
+	app.route("/public/:user?/:poll?")
+		.get(clickHandler.getPublicPoll)
+		.post(clickHandler.addPollData);
+		
+		
+	//POLL INFO - PRIVATE API
+	app.route("/api/:id/polls/")
+		.post(isLoggedIn, clickHandler.addPoll)
+		.get(isLoggedIn, clickHandler.getPolls)
+		.delete(isLoggedIn, clickHandler.deletePoll)
 };

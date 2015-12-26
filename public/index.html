@@ -6,6 +6,7 @@
 		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
 		
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	</head>
 
 	<header>
@@ -31,6 +32,19 @@
 			</div>
 		</div>
 		
+    <form method="post" id="addPollForm" action="/api/:id/polls">
+    <label for="question">Name Your Question</label>
+    <input type="text" name="question">
+    <label>Options</label>
+    <input type="text" name="option1">
+    <input type="text" name="option2">
+    <input type="submit">
+	</form>
+	
+	<button class="btn btn-secondary" id="addoption"> Add Option </button>
+	<span id="polls"> </span>
+		
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/clickController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
