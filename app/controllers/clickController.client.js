@@ -21,10 +21,6 @@
          
          
          //GET USER DATA 
-         
-          
-          
-         
          //clear form data
          $('input[type="text"],textarea').val('');
          
@@ -32,15 +28,17 @@
          var JSONdata = JSON.parse(data);
          console.log(JSONdata)
          var pollsObject = JSONdata.polls;
+         console.log(pollsObject)
          var userName = JSONdata.github.username;
          //create HTML to insert
          pollHTML = ""
-         pollHTML += "<h1> Your Polls </h1> <ul>"
+         pollHTML += "<h1> Your Polls </h1> <ul id='pollsList'>"
          
          for (var i=0; i < pollsObject.length; i++) {
-            pollHTML += "<li> <p>" + pollsObject[i].question + "</p>" 
+            pollHTML += "<li>"
+            pollHTML += "<p>" + pollsObject[i].question + "</p>"
+            pollHTML += "<button class='btn btn-secondary'> <a href='" + appUrl + "/public/" + userName + "/" + encodeURIComponent(pollsObject[i].question) + "'>Visit Poll</a></button>"
             pollHTML += "<button class='btn btn-primary deletePollBtn'> Delete </button>"
-            pollHTML += "<a href='" + appUrl + "/public/" + userName + "/" + encodeURIComponent(pollsObject[i].question) + "'>Visit Poll</a>"
             pollHTML += "</li>"
          }
          
@@ -60,6 +58,7 @@
 
    console.log("delete button working")
       var pollTitle = $(this).siblings("p").text();
+      console.log(pollTitle)
       pollTitle = encodeURIComponent(pollTitle);
    
    var pollUrl = apiUrl + "/" + pollTitle;
@@ -79,14 +78,14 @@
       $("#addoption").click(function() {
          console.log("working")
          
-         console.log($("#addPollForm input").length)
+         console.log($("#addPoll input").length)
          
-         var formInputs = $("#addPollForm input").length;
+         var formInputs = $("#addPoll input").length;
          
          var inputToFind = formInputs - 2;
          var inputToInsert = formInputs - 1;
          
-         $("#addPollForm input[name=option" + inputToFind + "]").after('<input type="text" name="option' + inputToInsert + '">');
+         $("#addPoll input[name=option" + inputToFind + "]").after('<input type="text" name="option' + inputToInsert + '">');
          
       })
       

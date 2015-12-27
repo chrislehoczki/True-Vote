@@ -41,7 +41,7 @@ function ClickHandler () {
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
-					res.json(result.polls);
+					res.redirect('back');
 				}
 			)
 	}//END
@@ -51,7 +51,7 @@ function ClickHandler () {
 	this.deletePoll = function (req, res) {
 				
 		var pollQuestion = req.params.pollname;
-		console.log(pollQuestion)
+		console.log(req.params)
 		
 		Users
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, {$pull: {polls: {question: req.params.pollname}}})
@@ -64,8 +64,15 @@ function ClickHandler () {
 	};//END
 	
 	this.getPublicPoll = function (req,res) {
+		
+		
+		
 		console.log(req.params);
-	
+		
+		var user = req.params.user;
+		
+		
+		
 		Users
 			.findOne({ 'github.username': req.params.user }, { '_id': false })
 			.exec(function (err, result) {
@@ -81,25 +88,25 @@ function ClickHandler () {
 				
 				polls.map(function(item) {
 					if(item.question === req.params.poll) {
-					var html = "<h1> A Poll App </h1>"
+						
+						var formUrl = "/public/" + user + "/" + encodeURIComponent(item.question)
 					
-					html += "<ul>";
-    				html += "<form action='/public/" + req.params.user + "/" + encodeURIComponent(item.question) + "'" +  "method='post'>"
-    				html += "<h2>" + item.question + "</h2>";
-    				html += "<input type='radio' name='option' value='0'>" + item.options[0].option;
-				    html += "<input type='radio' name='option' value='1'>" + item.options[1].option;
-    				html += "<input type='submit'> </input>"
-    				html += "</form>"
-    				html += "</ul>"
-    				html += "<div id='chart_div'></div>"
+    				
+    				console.log(item.options.length)
+    				
+    				
 						console.log(item.question)
-						res.send(item)
+						console.log(item)
+						res.render('poll', {item, url: formUrl});
 					}
 				});
 				
 				
+				
+				
 				}
 			});
+			
 	}; //end
 			
 			
@@ -134,7 +141,9 @@ function ClickHandler () {
             .exec(function (err, result) {
                     if (err) { throw err; }
 				
-                    res.json(result);
+				
+										//redirects back to page so that can see chart data
+                    res.redirect('back');
                 }
             );
 

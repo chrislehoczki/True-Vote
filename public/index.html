@@ -5,6 +5,7 @@
 	<head>
 		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
 		
+		<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	</head>
@@ -17,32 +18,28 @@
 	</header>
 
 	<body>
-		<div class="container">
-			<img src="/public/img/clementine_150.png" />
-			<br />
-			<p class="clementine-text">Clementine.js</p>
-		</div>
 	
-		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
-			</div>
-		</div>
-		
-    <form method="post" id="addPollForm" action="/api/:id/polls">
+	<div class="jumbotron">
+		<ul>
+		<li><h1>TrueVote</h1></li>
+		<li><h2>Voting Solutions and Data Driven Strategies</h2></li>
+		</ul>
+	</div>
+	
+	<h1> Add a Poll </h1>
+    <form id="addPoll" method="post" id="addPollForm" action="/api/:id/polls">
     <label for="question">Name Your Question</label>
     <input type="text" name="question">
     <label>Options</label>
     <input type="text" name="option1">
     <input type="text" name="option2">
-    <input type="submit">
+    
+    <input class="btn btn-primary" type="submit">
 	</form>
+	<button type ="button" class="btn btn-secondary" id="addoption"> Add Option </button>
 	
-	<button class="btn btn-secondary" id="addoption"> Add Option </button>
-	<span id="polls"> </span>
+	<div id="polls"> 
+	</span>
 		
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>

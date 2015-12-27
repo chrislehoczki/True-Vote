@@ -72,19 +72,18 @@ module.exports = function (app, passport) {
 		//PUBLIC VIEW AND VOTE API
 	app.route('/vote')
 		.get(function (req, res) {
-			res.write("blah")
 			res.sendFile(path + '/public/poll.html');
 		});
 		
 	//PUBLIC API TO GET POLL
 	app.route("/public/:user?/:poll?")
 		.get(clickHandler.getPublicPoll)
-		.post(clickHandler.addPollData);
+		.post(clickHandler.addPollData); //send data informatio
 		
 		
 	//POLL INFO - PRIVATE API
-	app.route("/api/:id/polls/")
+	app.route("/api/:id?/polls/:pollname?")
 		.post(isLoggedIn, clickHandler.addPoll)
 		.get(isLoggedIn, clickHandler.getPolls)
-		.delete(isLoggedIn, clickHandler.deletePoll)
+		.delete(isLoggedIn, clickHandler.deletePoll);
 };
