@@ -1,25 +1,20 @@
-/********* Fonts **********/
 
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url('../fonts/Roboto-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url('../fonts/Roboto-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('https://fonts.googleapis.com/css?family=Oswald');
-}
 
 /****** Main Styling ******/
+
+
+
+a:hover {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+}
 
 body {
 	font-family: 'Oswald', sans-serif;
@@ -56,7 +51,7 @@ p {
 }
 
 
-h1 { 
+.jumbotron h1 { 
 	font-size: 4em;
 }
 
@@ -67,7 +62,7 @@ ul {
 	list-style-type: none;
 }
 
-h1, h2 {
+.jumbotron h1, h2 {
 	color: white;
 	text-shadow: 2px 2px gray;
 	text-align: center;
@@ -75,7 +70,7 @@ h1, h2 {
 
 
 .login {
-	margin: 86px auto 0 auto;
+	margin: 0 auto 0 auto;
 	text-align: center;
 }
 
@@ -84,26 +79,53 @@ h1, h2 {
 	padding: 7px 5px;
 }
 
+#login-btn:hover >p {
+	color: white;
+}
+
 .btn p {
 	margin: 8px 0 0 0;
 	padding: 0;
 }
+
+
 
 .btn > img {
 	float: left;
 	margin-left: 10px
 }
 
+footer {
+	width: 100%;
+	background-color: black;
+	height: 50px;
+}
+
+footer p{
+	color: white;
+	margin-left: 100px;
+	padding: 15px;
+}
+
 /****** Info ******/
 
 .infobox {
-	background-image: url("../img/voting.jpg");
-	background-size: contain;
-	background-repeat: no-repeat;
-	height: 300px;
+
 	margin: 4.16%;
 	display: table;
+	text-align: center;
 }
+
+.infobox h2 {
+	color: black;
+}
+
+.infobox img {
+	max-width: 100%;
+	margin: 10px auto;
+}
+
+
 
 /****** Main Page ******/
 
@@ -117,19 +139,148 @@ h1, h2 {
 	display: block;
 }
 
+
+
+/****** POLL PAGE ******/
+
+h1 {
+	font-family: "Oswald";
+}
+
+.poll-holder {
+	text-align: center;
+}
+
+.dataForm {
+	width: 85%;
+	margin: 0px auto;
+	padding: 30px;
+	text-align: center;
+}
+
+.optiondiv {
+	margin-right: 10px;
+	display: inline;
+	border-right: 1px solid black;
+}
+
+input[type="radio"] {
+	width: 50px;
+	color: red;
+}
+
+input[type="submit"] {
+	clear: both;
+	display: block;
+	margin: 30px auto 0px auto;
+}
+
+
+#chart_div {
+	margin: 0px auto;
+	width: 400px;
+	margin: 1px solid black;
+}
+
+/****** Dashboard Page ******/
+
+.menu {
+	width: 100px;
+	color: black;
+}
+
+nav {
+	text-align: center;
+}
+
+
+.center-pills { 
+	display: inline-block; 
+	margin-top: 20px;
+}
+
+.center-pills li {
+	display: inline;
+}
+
+.addpoll-container {
+	width: 75%;
+	text-align: center;
+	margin-top: 50px;
+	border-top: 1px solid black;
+	margin: 50px auto 10px auto;
+}
+
+.addpoll-container input[type="text"] {
+	width: 250px;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+.addpoll-container label {
+	margin-top: 10px;
+}
+
+.addpoll-container button {
+	margin-top: 10px;
+}
+
+
+
+
 #polls {
-	
+	width: 75%;
+	border-top: 1px solid black;
+	margin: 50px auto;
 }
 
 #pollsList {
-	width: 50%;
-	margin: 0 auto;
+	width: 100%;
+    display: block;
+    padding: 0;
+    list-style-type: none;
 }
 
-#pollsList li {
-	margin: 20px;
+#polls h1 {
+	text-align: center;
+}
+
+.poll {
+	margin-top: 20px;
+	margin-left:2.5%;
+	margin-right: 2.5%;
 	border: 1px solid black;
+	width: 45%;
 	padding: 10px;
+	float: left;
+	min-height: 350px;
+}
+
+.poll:nth-child(odd) {
+	clear:both;
+}
+
+.poll a {
+	text-decoration: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+.poll h3 {
+	text-align: center;
+}
+
+.poll ul li {
+	margin: 10px;
+}
+
+.polls { 
+	color: black;
 }
 
 
@@ -144,7 +295,7 @@ h1, h2 {
 .btn {	/* Styling for buttons */
 	margin: 0 8px;
 	color: white;
-	background-color: #00BCD4;
+	background-color: black;
 	display: inline-block;
 	border: 0;
 	font-size: 14px;
@@ -156,6 +307,13 @@ h1, h2 {
 
 .btn:focus {	/* Remove outline when hovering over button */
 	outline: none;
+	color: white;
+}
+
+.btn:visited {	/* Remove outline when hovering over button */
+	outline: none;
+	color: white;
+	background-color: black;
 }
 
 .btn:active {	/* Scale the button down by 10% when clicking on button */
@@ -169,9 +327,7 @@ h1, h2 {
 	color: #212121;
 }
 
-#click-nbr {
-	font-weight: 400;
-}
+
 
 /****** Profile Styling ******/
 

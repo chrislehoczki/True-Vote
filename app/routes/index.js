@@ -86,4 +86,11 @@ module.exports = function (app, passport) {
 		.post(isLoggedIn, clickHandler.addPoll)
 		.get(isLoggedIn, clickHandler.getPolls)
 		.delete(isLoggedIn, clickHandler.deletePoll);
-};
+		
+	//ADD OPTION ROUTE
+	
+	app.route("/addoption/:polltitle?/:option?")
+		.get(clickHandler.addOption);
+	};
+
+	
