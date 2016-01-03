@@ -1,0 +1,32 @@
+html 
+    head
+    title= item.question
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Oswald', type="text/css") 
+    link(rel='stylesheet', href='/public/css/normalize.css', type="text/css") 
+    link(rel='stylesheet', href='/public/css/main.css', type="text/css")   
+       
+    body
+        div.poll-holder
+            h1!= item.question
+        
+            form(action= url, method="post" class="dataForm")
+                - for (var x = 0; x < item.options.length; x++)
+                    div.optiondiv
+                        label(for=x, class="radio inline")!= item.options[x].option
+                        input(type="radio", name="option", value=x)
+            
+                input(type="submit" class="btn btn-primary")
+            h1= "Live Data"
+            div#chart_div
+        
+        
+            script var data = !{JSON.stringify(item)}
+        
+        
+            script(type="text/javascript" src="https://www.google.com/jsapi")
+            script(type="text/javascript" src="../../controllers/publicController.client.js")
+          
+     
+            
+     
+           
